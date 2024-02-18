@@ -39,14 +39,14 @@ const navGroups = [
         label: 'Analysis',
         items: [
             { label: 'Scoreboard', Icon: ScoreboardIcon, path: '/scoreboard' }, // Assuming a route for the scoreboard
-            { label: 'Report', Icon: ReportIcon, path: '/reports' }, // Assuming a route for viewing reports
+            { label: 'Report', Icon: ReportIcon, path: '/report' }, // Assuming a route for viewing reports
             { label: 'Notes', Icon: NoteIcon, path: '/notes' }, // Assuming a route for viewing notes
         ],
     },
     {
         label: 'Tasks',
         items: [
-            { label: 'Scheduled Jobs', Icon: ScheduleIcon, path: '/scheduled-jobs' }, // Assuming a route for scheduled jobs
+            { label: 'Scheduled Jobs', Icon: ScheduleIcon, path: '/schedule' }, // Assuming a route for scheduled jobs
             { label: 'Mass Payload', Icon: PayloadIcon, path: '/mass-payload' }, // Assuming a route for mass payload operations
             { label: 'Payloads', Icon: PayloadIcon, path: '/payloads' }, // Assuming a route for managing payloads
             { label: 'Mass Attack', Icon: AttackIcon, path: '/mass-attack' }, // Assuming a route for mass attack operations
