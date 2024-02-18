@@ -1,3 +1,20 @@
-export default function About() {
-    return <div>Not yet implemented</div>
-  }
+'use client';
+
+export default function ScoreboardPage() {
+  return (
+    <div style={{ 
+        minHeight: '100vh', 
+        overflow: 'auto', 
+        display: 'flex', 
+        justifyContent: 'center', 
+        alignItems: 'center', 
+        paddingBottom: '50px' // Added padding at the bottom for extra space
+    }}>
+      <img src={"https://arena.wrccdc.org/scores/"} alt="Scoreboard" style={{ 
+          maxWidth: '100%', 
+          height: 'auto', 
+          display: 'block', // Ensure the image doesn't have extra space below it
+      }} />
+    </div>
+  );
+}

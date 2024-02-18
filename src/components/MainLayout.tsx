@@ -39,7 +39,7 @@ const MainLayout = ({ children }: { children: React.ReactNode }) => {
                     <Drawer open={isDrawerOpen} onClose={() => setIsDrawerOpen(!isDrawerOpen)} />
                 </div>
             )}
-                <div style={{flexGrow: 1}}>
+                <div style={{flexGrow: 1, overflow: 'auto'}}>
                     <Header onCloseDrawer={() => setIsDrawerOpen(!isDrawerOpen)} />
                     <main style={{ padding: '20px' }}>{children}</main>
                 </div>

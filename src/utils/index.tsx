@@ -3,7 +3,7 @@ import {buildFileTree, Directory} from "./file-manager";
 
 export const useFilesFromSandbox = (id: string, callback: (dir: Directory) => void) => {
   React.useEffect(() => {
-    fetch('https://codesandbox.io/api/v1/sandboxes/' + id)
+    fetch('/example-response.json')
       .then(response => response.json())
       .then(({data}) => {
         const rootDir = buildFileTree(data);

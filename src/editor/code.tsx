@@ -21,7 +21,7 @@ export const Code = ({selectedFile}: { selectedFile: File | undefined }) => {
         height="100vh"
         language={language}
         value={code}
-        theme="vs-dark"
+        theme="vs-light"
       />
     </Div>
   )
