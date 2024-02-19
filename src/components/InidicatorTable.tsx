@@ -26,7 +26,7 @@ const getIndicatorColor = (value: number | boolean | string) => {
     } else if (typeof value === 'boolean') {
         return value ? 'green' : 'red';
     } else if (typeof value === 'string') {
-        return value.toLowerCase() === 'active' ? 'green' : 'red';
+        return value.toLowerCase() === 'online' ? 'green' : 'red';
     } else {
         console.error("Indicator value must be a number, boolean, or specific strings");
         return 'transparent'; // Fallback color

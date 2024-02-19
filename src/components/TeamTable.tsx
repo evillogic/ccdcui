@@ -1,6 +1,6 @@
 import React from 'react';
 import Link from 'next/link';
-import { Table, TableBody, TableCell, TableContainer, TableHead, TableRow, Paper } from '@mui/material';
+import { Table, TableBody, TableCell, TableContainer, TableHead, TableRow, Paper, Typography } from '@mui/material';
 import { useRouter } from 'next/navigation';
 import IndicatorTable from './InidicatorTable';
 
@@ -80,7 +80,10 @@ const newTeamTable: React.FC<TeamTableProps> = ({ teams }) => {
         liveServicesPercentage: 'Live Services (%)',
     };
     return (
-        <IndicatorTable dataObjects={teams} indicatorKey="liveServicesPercentage" linkKey="id" linkPath="/teams" columnMapping={teamColumnMapping} />
+        <div>
+            <Typography variant="h4" style={{ margin: '2rem' }}>Teams</Typography>
+            <IndicatorTable dataObjects={teams} indicatorKey="liveServicesPercentage" linkKey="id" linkPath="/teams" columnMapping={teamColumnMapping} />
+        </div>
     );
 };
 

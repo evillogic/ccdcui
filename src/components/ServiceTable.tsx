@@ -1,55 +1,46 @@
 import React from 'react';
-import { Table, TableBody, TableCell, TableContainer, TableHead, TableRow, Paper } from '@mui/material';
-import { useRouter } from 'next/navigation';
 import IndicatorTable from './InidicatorTable';
+import { Typography } from '@mui/material';
 
 interface ServiceTableProps {
     services: string[];
 }
 
-export const getIndicatorColor = (percentage: number) => {
-    if (percentage >= 50) {
-        return 'green';
-    } else if (percentage >= 30) {
-        return 'orange';
-    } else {
-        return 'red';
-    }
-};
-
-const ServiceTable: React.FC<ServiceTableProps> = ({ services }) => {
-    const router = useRouter();
-    return (
-        <TableContainer component={Paper} style={{ marginTop: '2rem' }}>
-        <Table>
-            <TableHead>
-                <TableRow>
-                    <TableCell>Service Name</TableCell>
-                    <TableCell>Status</TableCell>
-                    {/* Add more columns as needed */}
-                </TableRow>
-            </TableHead>
-            <TableBody>
-                {services && services.map((service, index) => (
-                    <TableRow key={index}>
-                        <TableCell>{service.name}</TableCell>
-                        <TableCell>{service.status}</TableCell>
-                        {/* Add more cells as needed */}
-                    </TableRow>
-                ))}
-            </TableBody>
-        </Table>
-    </TableContainer>
-    );
-};
+// Example Service object
+// {
+//     _id: "service1",
+//     hostname: "host1.example.com",
+//     port: 80,
+//     protocol: "HTTP",
+//     product: "nginx",
+//     version: "1.18.0",
+//     CVEList: ["CVE-2021-XXXX", "CVE-2022-XXXX"],
+//     status: "online",
+//     lastConnection: "2024-02-17T12:34:56Z",
+//     host: "host1",
+//     team: "team1",
+//     notes: "Nginx web server running the main website"
+// },
 
 const newServiceTable: React.FC<ServiceTableProps> = ({ services }) => {
     const serviceColumnMapping = {
-        name: 'Service Name',
-        status: 'Status',
+        hostname: "Host",
+        port: "Port",
+        protocol: "Protocol",
+        product: "Product",
+        version: "Version",
+        CVEList: "CVEs",
+        status: "Status",
+        lastConnection: "Last Connection",
+        host: "Host",
+        team: "Team",
+        notes: "Notes"
     };
     return (
-        <IndicatorTable dataObjects={services} indicatorKey="status" linkKey="name" linkPath="/services" columnMapping={serviceColumnMapping}/>
+        <div>
+            <Typography variant="h4" style={{ margin: '2rem' }}>Services</Typography>
+            <IndicatorTable dataObjects={services} indicatorKey="status" linkKey="port" linkPath="/services" columnMapping={serviceColumnMapping}/>
+        </div>
     );
 };
 

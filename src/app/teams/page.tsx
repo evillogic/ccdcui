@@ -1,7 +1,6 @@
 'use client';
 
 import React, { useEffect, useState } from 'react';
-import { SxProps } from '@mui/material';
 import { getTeams } from '../../utils/client';
 import TeamTable from '../../components/TeamTable';
 
@@ -22,14 +21,6 @@ export default function TeamsPage() {
 
     fetchData();
   }, []);
-
-  const dataRowSX: SxProps = {
-    display: "table-row",
-    ":hover": {
-      backgroundColor: "#f5f5f5",
-      cursor: "pointer",
-    },
-  };
 
   return (
     <TeamTable teams={teams} />

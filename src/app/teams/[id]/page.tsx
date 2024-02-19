@@ -1,7 +1,8 @@
 'use client';
 
 import React, { useEffect, useState } from 'react';
-import { getTeams, getServices } from '../../../utils/client';
+import { getTeams, getHosts, getServices } from '../../../utils/client';
+import HostTable from '../../../components/HostTable';
 import ServiceTable from '../../../components/ServiceTable';
 
 // Assuming the team's services are structured like this:
@@ -9,6 +10,7 @@ import ServiceTable from '../../../components/ServiceTable';
 
 export default function Page({ params }: { params: { id: string } }) {
     const [team, setTeam] = useState(null);
+    const [hosts, setHosts] = useState([]);
     const [services, setServices] = useState([]);
 
     useEffect(() => {
@@ -20,6 +22,19 @@ export default function Page({ params }: { params: { id: string } }) {
                 setTeam(foundTeam);
             } catch (error) {
                 console.error('Error fetching teams:', error);
+            }
+        };
+
+        fetchData();
+    }, [params.id]);
+
+    useEffect(() => {
+        const fetchData = async () => {
+            try {
+                const hosts = await getHosts();
+                setHosts(hosts);
+            } catch (error) {
+                console.error('Error fetching hosts:', error);
             }
         };
 
@@ -50,7 +65,7 @@ export default function Page({ params }: { params: { id: string } }) {
                     <div>Score: {team.score}</div>
                     <div>Live Services Percentage: {team.liveServicesPercentage.toFixed(2)}%</div>
                     
-                    {/* Assuming 'services' is part of your team data structure */}
+                    <HostTable hosts={hosts} />
                     <ServiceTable services={services} />
                 </>
             ) : (

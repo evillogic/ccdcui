@@ -27,3 +27,17 @@ export const getServices = async () => {
         throw error; // Rethrow the error to be handled by the caller
     }
 };
+
+export const getHosts = async () => {
+    try {
+        const response = await fetch('/api/hosts');
+        if (!response.ok) {
+            throw new Error('Failed to fetch hosts');
+        }
+        const data = await response.json();
+        return data.hosts; // Assuming the response JSON has a hosts field
+    } catch (error) {
+        console.error(error);
+        throw error; // Rethrow the error to be handled by the caller
+    }
+}
