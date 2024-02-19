@@ -1,17 +1,34 @@
 import React from 'react';
-import CloseIcon from '@mui/icons-material/Close';
-import IconButton from '@mui/material/IconButton'; // Use IconButton for better UX
+import Breadcrumbs from '@mui/material/Breadcrumbs';
+import MuiLink from '@mui/material/Link'; // Rename to avoid conflict with Next's Link
+import NextLink from 'next/link'; // Import Next's Link
+import { useRouter, usePathname } from 'next/navigation';
 
 interface HeaderProps {
     onCloseDrawer: () => void;
 }
 
 const Header: React.FC<HeaderProps> = ({ onCloseDrawer }) => {
+    const router = useRouter();
+    const location = usePathname();
+
+    const pathnames = location ? location.split('/').filter((x) => x) : [];
+
     return (
         <header style={{ display: 'flex', alignItems: 'center', justifyContent: 'flex-start', padding: '8px', backgroundColor: '#f5f5f5', borderBottom: '1px solid #e0e0e0' }}>
-            <IconButton onClick={onCloseDrawer} size="large">
-                <CloseIcon />
-            </IconButton>
+            <Breadcrumbs separator="/" aria-label="breadcrumb" style={{ marginLeft: '16px' }}>
+                {pathnames.map((pathname, index) => {
+                    const routeTo = `/${pathnames.slice(0, index + 1).join('/')}`;
+                    const isLast = index === pathnames.length - 1;
+
+                    // Wrap MuiLink with NextLink for optimized navigation
+                    return (
+                        <NextLink key={pathname} href={routeTo} passHref>
+                                {isLast ? pathname : pathname.toLowerCase()}
+                        </NextLink>
+                    );
+                })}
+            </Breadcrumbs>
         </header>
     );
 };
