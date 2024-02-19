@@ -1,3 +1,5 @@
+// This file contains the client-side code for making requests to the server
+
 export const getTeams = async () => {
     try {
         const response = await fetch('/api/teams');
@@ -23,15 +25,5 @@ export const getServices = async () => {
     } catch (error) {
         console.error(error);
         throw error; // Rethrow the error to be handled by the caller
-    }
-}
-
-export const getIndicatorColor = (percentage: number) => {
-    if (percentage >= 50) {
-        return 'green';
-    } else if (percentage >= 30) {
-        return 'orange';
-    } else {
-        return 'red';
     }
 };

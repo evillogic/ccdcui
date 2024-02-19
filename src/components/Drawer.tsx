@@ -1,3 +1,5 @@
+'use client';
+
 import React from 'react';
 import Link from 'next/link'; // Import Link from Next.js
 import { styled } from '@mui/material/styles';
@@ -52,7 +54,7 @@ const navGroups = [
             { label: 'Payloads', Icon: PayloadIcon, path: '/payloads' }, // Assuming a route for managing payloads
             { label: 'Mass Attack', Icon: AttackIcon, path: '/mass-attack' }, // Assuming a route for mass attack operations
             { label: 'Attacks', Icon: AttackIcon, path: '/attacks' }, // Assuming a route for managing attacks
-            { label: 'Generate List', Icon: FormatListBulletedIcon, path: '/list' },
+            { label: 'Generate IP List', Icon: FormatListBulletedIcon, path: '/list' },
         ],
     },
 ];

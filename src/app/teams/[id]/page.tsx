@@ -1,8 +1,8 @@
 'use client';
 
 import React, { useEffect, useState } from 'react';
-import { getTeams, getServices } from '../utils';
-import { Table, TableBody, TableCell, TableContainer, TableHead, TableRow, Paper } from '@mui/material';
+import { getTeams, getServices } from '../../../utils/client';
+import ServiceTable from '../../../components/ServiceTable';
 
 // Assuming the team's services are structured like this:
 // services: [{ name: 'Service 1', status: 'Active', ... }, ...]
@@ -51,26 +51,7 @@ export default function Page({ params }: { params: { id: string } }) {
                     <div>Live Services Percentage: {team.liveServicesPercentage.toFixed(2)}%</div>
                     
                     {/* Assuming 'services' is part of your team data structure */}
-                    <TableContainer component={Paper} style={{ marginTop: '2rem' }}>
-                        <Table>
-                            <TableHead>
-                                <TableRow>
-                                    <TableCell>Service Name</TableCell>
-                                    <TableCell>Status</TableCell>
-                                    {/* Add more columns as needed */}
-                                </TableRow>
-                            </TableHead>
-                            <TableBody>
-                                {services && services.map((service, index) => (
-                                    <TableRow key={index}>
-                                        <TableCell>{service.name}</TableCell>
-                                        <TableCell>{service.status}</TableCell>
-                                        {/* Add more cells as needed */}
-                                    </TableRow>
-                                ))}
-                            </TableBody>
-                        </Table>
-                    </TableContainer>
+                    <ServiceTable services={services} />
                 </>
             ) : (
                 <div>Team not found</div>

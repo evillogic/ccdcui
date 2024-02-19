@@ -49,3 +49,25 @@ Notes
 Each page should also have markdown notes attached to it
 There should be a web ssh you can do from the host page
 Each host/service should show if it is online
+
+Attacks deliver payloads to hosts.
+An attack is a script that takes in a host, a payload, and optional arguments
+A payload is a script that runs on a host
+An attack runs a payload on a host
+
+The data model for this is as follows:
+Each team has many hosts
+Each host has many services
+Each host knows its team
+Each service knows its host and team
+all objects have notes
+hosts and services have a last seen time
+host last seen time is based on the most recent service last seen time
+services have a status based on the last connection attempt
+Teams and hosts have a live service count based on status
+Teams and hosts have a live service % based on status
+Hosts have a collected passwords count
+Teams have a collected passwords count based on all hosts in the team
+Hosts have a collected PII count
+Teams have a collected PII count based on all hosts in the team
+Services have an hostname, port, protocol, product, version, CVE list, and status

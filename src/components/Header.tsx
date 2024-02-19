@@ -17,14 +17,16 @@ const Header: React.FC<HeaderProps> = ({ onCloseDrawer }) => {
     return (
         <header style={{ display: 'flex', alignItems: 'center', justifyContent: 'flex-start', padding: '8px', backgroundColor: '#f5f5f5', borderBottom: '1px solid #e0e0e0' }}>
             <Breadcrumbs separator="/" aria-label="breadcrumb" style={{ marginLeft: '16px' }}>
+                <NextLink href="/" passHref>
+                    ~
+                </NextLink>
                 {pathnames.map((pathname, index) => {
                     const routeTo = `/${pathnames.slice(0, index + 1).join('/')}`;
                     const isLast = index === pathnames.length - 1;
 
-                    // Wrap MuiLink with NextLink for optimized navigation
                     return (
                         <NextLink key={pathname} href={routeTo} passHref>
-                                {isLast ? pathname : pathname.toLowerCase()}
+                            {isLast ? pathname : pathname.toLowerCase()}
                         </NextLink>
                     );
                 })}
