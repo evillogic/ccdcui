@@ -1,17 +1,56 @@
 import { NextResponse } from 'next/server';
 export async function GET() {
     const teams = [
-        { id: 1, liveServices: 5, collectedPii: 10, score: 80, liveServicesPercentage: 50 },
-        { id: 2, liveServices: 3, collectedPii: 8, score: 75, liveServicesPercentage: 37.5 },
-        { id: 3, liveServices: 4, collectedPii: 12, score: 85, liveServicesPercentage: 33.33 },
-        { id: 4, liveServices: 6, collectedPii: 15, score: 90, liveServicesPercentage: 60 },
-        { id: 5, liveServices: 2, collectedPii: 5, score: 70, liveServicesPercentage: 20 },
-        { id: 6, liveServices: 7, collectedPii: 18, score: 95, liveServicesPercentage: 70 },
-        { id: 7, liveServices: 4, collectedPii: 11, score: 82, liveServicesPercentage: 40 },
-        { id: 8, liveServices: 3, collectedPii: 9, score: 78, liveServicesPercentage: 30 },
-        { id: 9, liveServices: 5, collectedPii: 13, score: 88, liveServicesPercentage: 50 },
-        { id: 10, liveServices: 2, collectedPii: 6, score: 72, liveServicesPercentage: 20 },
-        // ... rest of the teams
+        {
+            _id: "team1",
+            notes: "Leading the competition with the most live services.",
+            hosts: ["host1", "host2"],
+            liveServiceCount: 2,
+            liveServicePercentage: 100,
+            collectedPasswordsCount: 8,
+            collectedPIICount: 11,
+            score: 123 // Add score value here
+        },
+        {
+            _id: "team2",
+            notes: "Strong in defense but needs to improve on service uptime.",
+            hosts: ["host3"],
+            liveServiceCount: 0,
+            liveServicePercentage: 0,
+            collectedPasswordsCount: 2,
+            collectedPIICount: 5,
+            score: 324 // Add score value here
+        },
+        {
+            _id: "team3",
+            notes: "Newcomers with a lot to prove. Focused on rapid deployment.",
+            hosts: ["host4", "host5"],
+            liveServiceCount: 3,
+            liveServicePercentage: 75,
+            collectedPasswordsCount: 4,
+            collectedPIICount: 6,
+            score: 122 // Add score value here
+        },
+        {
+            _id: "team4",
+            notes: "Experienced in network security, lagging in service deployment.",
+            hosts: ["host6"],
+            liveServiceCount: 1,
+            liveServicePercentage: 50,
+            collectedPasswordsCount: 3,
+            collectedPIICount: 7,
+            score: 78 // Add score value here
+        },
+        {
+            _id: "team5",
+            notes: "Innovative strategies but facing stability issues.",
+            hosts: ["host7", "host8"],
+            liveServiceCount: 4,
+            liveServicePercentage: 80,
+            collectedPasswordsCount: 9,
+            collectedPIICount: 10,
+            score: 2 // Add score value here
+        }
     ];
 
     return new NextResponse(JSON.stringify({ teams }), {

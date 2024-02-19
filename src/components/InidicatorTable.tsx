@@ -22,7 +22,7 @@ interface IndicatorTableProps {
 
 const getIndicatorColor = (value: number | boolean | string) => {
     if (typeof value === 'number') {
-        return value >= 50 ? 'green' : value >= 30 ? 'orange' : 'red';
+        return value >= 70 ? 'green' : value >= 30 ? 'orange' : 'red';
     } else if (typeof value === 'boolean') {
         return value ? 'green' : 'red';
     } else if (typeof value === 'string') {

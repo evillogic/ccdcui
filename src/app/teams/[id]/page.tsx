@@ -17,8 +17,8 @@ export default function Page({ params }: { params: { id: string } }) {
         const fetchData = async () => {
             try {
                 const teams = await getTeams();
-                const teamId = Number(params.id);
-                const foundTeam = teams.find((team) => team.id === teamId);
+                const teamId = params.id;
+                const foundTeam = teams.find((team) => team._id === teamId);
                 setTeam(foundTeam);
             } catch (error) {
                 console.error('Error fetching teams:', error);
@@ -59,11 +59,11 @@ export default function Page({ params }: { params: { id: string } }) {
         <div style={{ margin: '2rem' }}>
             {team ? (
                 <>
-                    <h1>Team: {team.id}</h1>
-                    <div>Live Services: {team.liveServices}</div>
-                    <div>Collected PII: {team.collectedPii}</div>
+                    <h1>Team: {team._id}</h1>
+                    <div>Live Services: {team.liveServiceCount}</div>
+                    <div>Collected PII: {team.collectedPIICount}</div>
                     <div>Score: {team.score}</div>
-                    <div>Live Services Percentage: {team.liveServicesPercentage.toFixed(2)}%</div>
+                    <div>Live Services Percentage: {team.liveServicePercentage.toFixed(2)}%</div>
                     
                     <HostTable hosts={hosts} />
                     <ServiceTable services={services} />
