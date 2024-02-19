@@ -1,7 +1,8 @@
 import React from 'react';
 import TouchRipple from '@mui/material/ButtonBase/TouchRipple';
 
-const RippleContainer = ({ children, onClick }) => {
+const RippleContainer = ({ children, component, onClick }) => {
+  const As = component || 'div';
   const rippleRef = React.useRef(null);
 
   const onRippleStart = (e) => {
@@ -13,7 +14,7 @@ const RippleContainer = ({ children, onClick }) => {
   };
 
   return (
-    <div
+    <As
       onMouseDown={onRippleStart}
       onMouseUp={onRippleStop}
       onClick={onClick}
@@ -21,7 +22,7 @@ const RippleContainer = ({ children, onClick }) => {
     >
       {children}
       <TouchRipple ref={rippleRef} center={false} />
-    </div>
+    </As>
   );
 };
 

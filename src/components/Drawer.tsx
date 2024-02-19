@@ -16,6 +16,7 @@ import ReportIcon from '@mui/icons-material/Assessment';
 import ScheduleIcon from '@mui/icons-material/Schedule';
 import NoteIcon from '@mui/icons-material/Note';
 import ComputerIcon from '@mui/icons-material/Computer';
+import FormatListBulletedIcon from '@mui/icons-material/FormatListBulleted';
 
 const StyledDrawer = styled(Drawer)(({ theme }) => ({
     width: 320, // Increased width
@@ -51,6 +52,7 @@ const navGroups = [
             { label: 'Payloads', Icon: PayloadIcon, path: '/payloads' }, // Assuming a route for managing payloads
             { label: 'Mass Attack', Icon: AttackIcon, path: '/mass-attack' }, // Assuming a route for mass attack operations
             { label: 'Attacks', Icon: AttackIcon, path: '/attacks' }, // Assuming a route for managing attacks
+            { label: 'Generate List', Icon: FormatListBulletedIcon, path: '/list' },
         ],
     },
 ];

@@ -49,7 +49,7 @@ export default function TeamsPage() {
           </TableHead>
           <TableBody>
             {teams.map((team) => (
-              <ButtonBase
+              <TableRow
                 key={team.id}
                 component={TableRow}
                 sx={dataRowSX}
@@ -77,7 +77,7 @@ export default function TeamsPage() {
                 <TableCell>{team.collectedPii}</TableCell>
                 <TableCell>{team.score}</TableCell>
                 <TableCell>{team.liveServicesPercentage.toFixed(2)}%</TableCell>
-              </ButtonBase>
+              </TableRow>
             ))}
           </TableBody>
         </Table>
