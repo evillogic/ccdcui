@@ -1,7 +1,7 @@
-import React, {ReactNode} from 'react'
-import {SiHtml5, SiCss3, SiJavascript, SiTypescript, SiJson} from "react-icons/si";
-import {FcFolder, FcOpenedFolder, FcPicture, FcFile} from "react-icons/fc";
-import {AiFillFileText} from "react-icons/ai";
+import React, { ReactNode } from 'react';
+import { SiHtml5, SiCss3, SiJavascript, SiTypescript, SiJson } from "react-icons/si";
+import { FcFolder, FcOpenedFolder, FcPicture, FcFile } from "react-icons/fc";
+import { AiFillFileText } from "react-icons/ai";
 
 function getIconHelper() {
     const cache = new Map<string, ReactNode>();
@@ -20,7 +20,7 @@ function getIconHelper() {
     cache.set("openDirectory", <FcOpenedFolder/>);
     cache.set("py", <FcFile/>); // Added py file icon
     cache.set("sh", <FcFile/>); // Added sh file icon
-    return function (extension: string, name: string): ReactNode {
+    const iconFunction = function (extension: string, name: string): ReactNode {
         if (cache.has(extension))
             return cache.get(extension);
         else if (cache.has(name))
@@ -28,6 +28,8 @@ function getIconHelper() {
         else
             return <FcFile/>;
     }
+    iconFunction.displayName = 'IconFunction'; // Assign a display name to the returned function
+    return iconFunction;
 }
 
 export const getIcon = getIconHelper();

@@ -1,9 +1,10 @@
 import React from 'react';
 import IndicatorTable from './InidicatorTable';
 import { Typography } from '@mui/material';
+import { Service } from '../utils/types';
 
 interface ServiceTableProps {
-    services: string[];
+    services: Service[];
 }
 
 // Example Service object

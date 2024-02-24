@@ -1,9 +1,10 @@
 import React from 'react';
 import IndicatorTable from './InidicatorTable';
 import { Typography } from '@mui/material';
+import { Host } from '../utils/types';
 
 interface HostTableProps {
-    hosts: string[];
+    hosts: Host[];
 }
 
 // Example Host object

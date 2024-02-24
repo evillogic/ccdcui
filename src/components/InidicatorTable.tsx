@@ -3,7 +3,7 @@ import { useRouter } from 'next/navigation'; // Correct import for useRouter
 import { Table, TableBody, TableCell, TableContainer, TableHead, TableRow, Paper } from '@mui/material';
 
 interface DataObject {
-    id: string | number;
+    _id: string | number;
     [key: string]: any; // Allows for a flexible object structure
 }
 

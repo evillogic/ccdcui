@@ -1,5 +1,7 @@
 'use client';
 
+import Image from 'next/image';
+
 export default function ScoreboardPage() {
   return (
     <div style={{ 
@@ -10,7 +12,7 @@ export default function ScoreboardPage() {
         alignItems: 'center', 
         paddingBottom: '50px' // Added padding at the bottom for extra space
     }}>
-      <img src={"https://arena.wrccdc.org/scores/"} alt="Scoreboard" style={{ 
+      <Image src={"https://arena.wrccdc.org/scores/"} alt="Scoreboard" style={{ 
           maxWidth: '100%', 
           height: 'auto', 
           display: 'block', // Ensure the image doesn't have extra space below it

@@ -1,9 +1,10 @@
 import React from 'react';
 import { Typography } from '@mui/material';
 import IndicatorTable from './InidicatorTable';
+import { Team } from '../utils/types';
 
 interface TeamTableProps {
-    teams: string[];
+    teams: Team[];
 }
 
 // Example Team object
