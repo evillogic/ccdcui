@@ -1,29 +1,50 @@
 'use client';
-
 import React, { useState } from 'react';
-import { TextField, Button, Box, Typography, TextareaAutosize } from '@mui/material';
+import { TextField, Button, Box, Typography, TextareaAutosize, Select, MenuItem, FormControl, InputLabel } from '@mui/material';
 
 const IPGenerator = () => {
     const [teams, setTeams] = useState('');
     const [finalOctet, setFinalOctet] = useState('');
+    const [subnetStyle, setSubnetStyle] = useState('Western');
     const [generatedIPs, setGeneratedIPs] = useState('');
+
+    // Function to process ranges and individual numbers in final octets
+    const processFinalOctets = (input) => {
+        const parts = input.split(',');
+        const finalOctets = [];
+        parts.forEach(part => {
+            if (part.includes('-')) {
+                const [start, end] = part.split('-').map(Number);
+                for (let i = start; i <= end; i++) {
+                    finalOctets.push(i);
+                }
+            } else {
+                finalOctets.push(parseInt(part, 10));
+            }
+        });
+        return finalOctets;
+    };
 
     const generateIPs = () => {
         const teamsCount = parseInt(teams, 10);
-        // Splitting finalOctet by comma and trimming spaces to support inputs like "1, 2, 3"
-        const finalOctets = finalOctet.split(',').map(octet => parseInt(octet.trim(), 10));
+        const finalOctets = processFinalOctets(finalOctet);
 
         if (isNaN(teamsCount) || finalOctets.some(isNaN)) {
             alert('Please enter valid numbers for teams and final octets.');
             return;
         }
 
-        const thirdOctetStart = 101; // Starting value for the third octet
-
-        // Generating IPs for each final octet
-        const ips = finalOctets.flatMap(finalOctetValue =>
-            Array.from({ length: teamsCount }, (_, i) => `10.100.${thirdOctetStart + i}.${finalOctetValue}`)
-        ).join('\n');
+        let ips;
+        if (subnetStyle === 'Western') {
+            const thirdOctetStart = 101;
+            ips = finalOctets.flatMap(finalOctetValue =>
+                Array.from({ length: teamsCount }, (_, i) => `10.100.${thirdOctetStart + i}.${finalOctetValue}`)
+            ).join('\n');
+        } else if (subnetStyle === 'At Large') {
+            ips = finalOctets.flatMap(finalOctetValue =>
+                Array.from({ length: teamsCount }, (_, i) => `10.${10 * (i + 1)}.${10 * (i + 1)}.${finalOctetValue}`)
+            ).join('\n');
+        }
 
         setGeneratedIPs(ips);
     };
@@ -31,8 +52,18 @@ const IPGenerator = () => {
     return (
         <Box sx={{ maxWidth: '30%', margin: 'auto', textAlign: 'center', paddingTop: 4 }}>
             <Typography variant="h6" mb={2}>IP Range Generator</Typography>
-            <Typography variant="body1" mb={2}>Print a list of target IPs in the format 10.100.101-teams.octet</Typography>
-            <Typography variant="body1" mb={2}>You can also use comma separated values for multiple final octets</Typography>
+            <FormControl fullWidth sx={{ mb: 2 }}>
+                <InputLabel id="subnet-style-label">Subnet Style</InputLabel>
+                <Select
+                    labelId="subnet-style-label"
+                    value={subnetStyle}
+                    label="Subnet Style"
+                    onChange={(e) => setSubnetStyle(e.target.value)}
+                >
+                    <MenuItem value="Western">Western</MenuItem>
+                    <MenuItem value="At Large">At Large</MenuItem>
+                </Select>
+            </FormControl>
             <TextField
                 label="Number of Teams"
                 type="number"
@@ -41,14 +72,13 @@ const IPGenerator = () => {
                 margin="normal"
                 InputProps={{ inputProps: { min: 1 } }}
             />
-            {/* Adjusted the input type to text to allow comma-separated values */}
             <TextField
                 label="Final Octet(s) (Y)"
                 type="text"
                 value={finalOctet}
                 onChange={(e) => setFinalOctet(e.target.value)}
                 margin="normal"
-                helperText="Enter comma-separated values for multiple octets."
+                helperText="Enter comma-separated values or ranges for multiple octets."
             />
             <Button
                 variant="outlined"

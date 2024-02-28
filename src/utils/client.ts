@@ -1,6 +1,7 @@
 // This file contains the client-side code for making requests to the server
+import { Team, Service, Host } from './types';
 
-export const getTeams = async () => {
+export const getTeams = async (): Promise<Team[]> => {
     try {
         const response = await fetch('/api/teams');
         if (!response.ok) {
@@ -14,7 +15,7 @@ export const getTeams = async () => {
     }
 };
 
-export const getServices = async () => {
+export const getServices = async (): Promise<Service[]> => {
     try {
         const response = await fetch('/api/services');
         if (!response.ok) {
@@ -28,7 +29,7 @@ export const getServices = async () => {
     }
 };
 
-export const getHosts = async () => {
+export const getHosts = async (): Promise<Host[]> => {
     try {
         const response = await fetch('/api/hosts');
         if (!response.ok) {

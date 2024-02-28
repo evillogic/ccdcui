@@ -55,6 +55,7 @@ const navGroups = [
             { label: 'Mass Attack', Icon: AttackIcon, path: '/mass-attack' }, // Assuming a route for mass attack operations
             { label: 'Attacks', Icon: AttackIcon, path: '/attacks' }, // Assuming a route for managing attacks
             { label: 'Generate IP List', Icon: FormatListBulletedIcon, path: '/list' },
+            { label: 'Setup', Icon: TeamsIcon, path: '/setup'}
         ],
     },
 ];

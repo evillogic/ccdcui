@@ -1,4 +1,5 @@
 import { MongoClient, ObjectId } from "mongodb";
+import { Team, Host, Service } from "./types";
 
 // Database name
 const dbName = "ccdcMongo";
@@ -6,7 +7,6 @@ const dbName = "ccdcMongo";
 // Adjusted MongoDB connection URI to include authentication details properly
 const uri = `mongodb://${process.env.MONGODB_USERNAME}:${process.env.MONGODB_PASSWORD}@${process.env.MONGODB_HOSTNAME}:27017/${dbName}?authSource=admin`;
 console.log(uri);
-
 
 
 // Generic function to fetch documents from any collection
@@ -45,15 +45,51 @@ async function insertDocument(collectionName: string, document: Object) {
 
 // Specific functions for fetching teams, hosts, and services
 export async function fetchTeams(query: Object = {}) {
-    return await fetchDocuments("teams", query);
+    const client = new MongoClient(uri);
+    try {
+        await client.connect();
+        const database = client.db(dbName);
+        const collection = database.collection<Team>("teams");
+        const teams = await collection.find(query).toArray();
+        return teams; // Return the fetched teams
+    } catch (error) {
+        console.error(`An error occurred while fetching teams:`, error);
+        return []; // Return an empty array in case of error
+    } finally {
+        await client.close();
+    }
 }
 
 export async function fetchHosts(query: Object = {}) {
-    return await fetchDocuments("hosts", query);
+    const client = new MongoClient(uri);
+    try {
+        await client.connect();
+        const database = client.db(dbName);
+        const collection = database.collection<Host>("hosts");
+        const hosts = await collection.find(query).toArray();
+        return hosts; // Return the fetched hosts
+    } catch (error) {
+        console.error(`An error occurred while fetching hosts:`, error);
+        return []; // Return an empty array in case of error
+    } finally {
+        await client.close();
+    }
 }
 
 export async function fetchServices(query: Object = {}) {
-    return await fetchDocuments("services", query);
+    const client = new MongoClient(uri);
+    try {
+        await client.connect();
+        const database = client.db(dbName);
+        const collection = database.collection<Service>("services");
+        const services = await collection.find(query).toArray();
+        return services; // Return the fetched services
+    } catch (error) {
+        console.error(`An error occurred while fetching services:`, error);
+        return []; // Return an empty array in case of error
+    } finally {
+        await client.close();
+    }
 }
 
 // Specific functions for inserting teams, hosts, and services

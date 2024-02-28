@@ -12,11 +12,7 @@ export default function ScoreboardPage() {
         alignItems: 'center', 
         paddingBottom: '50px' // Added padding at the bottom for extra space
     }}>
-      <Image src={"https://arena.wrccdc.org/scores/"} alt="Scoreboard" style={{ 
-          maxWidth: '100%', 
-          height: 'auto', 
-          display: 'block', // Ensure the image doesn't have extra space below it
-      }} />
+      <Image unoptimized src={"https://arena.wrccdc.org/scores/"} alt="Scoreboard" fill style={{}} />
     </div>
   );
 }

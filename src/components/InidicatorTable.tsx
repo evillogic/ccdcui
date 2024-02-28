@@ -1,6 +1,8 @@
+'use client';
+
 import React from 'react';
-import { useRouter } from 'next/navigation'; // Correct import for useRouter
 import { Table, TableBody, TableCell, TableContainer, TableHead, TableRow, Paper } from '@mui/material';
+import { useRouter } from 'next/navigation'; // Correct import for useRouter
 
 interface DataObject {
     _id: string | number;
@@ -67,6 +69,7 @@ const IndicatorTable: React.FC<IndicatorTableProps> = ({
                 key={index}
                 className="dataRow"
                 onClick={() => router.push(`${linkPath}/${dataObject[linkKey]}`)}
+                //onClick={() => redirect(`${linkPath}/${dataObject[linkKey]}`)}
                 style={{ cursor: 'pointer' }}
               >
                 {columns.map(({ key }, cellIndex) => (
