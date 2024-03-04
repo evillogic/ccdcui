@@ -36,4 +36,26 @@ export interface Service {
     notes: string;
 }
 
+export interface Report {
+    _id: string;
+    user: string; // User which made the report, will be relevant when user identities are implemented
+    evidence: string;
+    attackingIp: string;
+    compromisedIp: string;
+    universallyAttempted: boolean;
+    compromisedTeams: string[]; // Array of Team IDs
+    dataAccessed: ReportDataAccessed;
+    persistence: boolean;
+    attackVector: string;
+    accessLevel: string;
+}
+
+export interface ReportDataAccessed {
+    _id: string;
+    pii: boolean;
+    password: boolean;
+    systemConfig: boolean;
+    database: boolean;
+}
+
 // Additional interfaces if needed for specific functionality or relationships
