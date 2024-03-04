@@ -59,4 +59,16 @@ export interface ReportDataAccessed {
     database: boolean;
 }
 
+export interface Template {
+    _id: string;
+    title: string;
+    evidence: string;
+    compromisedIp: string;
+    universallyAttempted: boolean;
+    persistence: boolean;
+    attackVector: string;
+    accessLevel: string;
+    dataAccessed: ReportDataAccessed;
+}
+
 // Additional interfaces if needed for specific functionality or relationships

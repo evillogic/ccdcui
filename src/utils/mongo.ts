@@ -1,5 +1,5 @@
 import { MongoClient, ObjectId } from "mongodb";
-import { Team, Host, Service } from "./types";
+import { Team, Host, Service, Template } from "./types";
 
 // Database name
 const dbName = "ccdcMongo";
@@ -108,6 +108,22 @@ export async function fetchReports(query: Object = {}) {
     }
 }
 
+export async function fetchTemplates(query: Object = {}) {
+    const client = new MongoClient(uri);
+    try {
+        await client.connect();
+        const database = client.db(dbName);
+        const collection = database.collection<Template>("templates");
+        const templates = await collection.find(query).toArray();
+        return templates;
+    } catch (error) {
+        console.error(`An error occured while fetch templates:`, error);
+        return [];
+    } finally {
+        await client.close();
+    }
+}
+
 // Specific functions for inserting teams, hosts, and services
 export async function insertTeam(team: Object) {
     return await insertDocument("teams", team);
@@ -123,6 +139,10 @@ export async function insertService(service: Object) {
 
 export async function insertReport(report: Object) {
     return await insertDocument("reports", report);
+}
+
+export async function insertTemplate(template: Object) {
+    return await insertDocument("templates", template);
 }
 
 // Example usage - uncomment and adjust the query as needed
