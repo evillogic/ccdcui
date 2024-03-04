@@ -92,6 +92,22 @@ export async function fetchServices(query: Object = {}) {
     }
 }
 
+export async function fetchReports(query: Object = {}) {
+    const client = new MongoClient(uri);
+    try {
+        await client.connect();
+        const database = client.db(dbName);
+        const collection = database.collection<Report>("reports");
+        const reports = await collection.find(query).toArray();
+        return reports;
+    } catch (error) {
+        console.error(`An error occured while fetching reports:`, error);
+        return [];
+    } finally {
+        await client.close();
+    }
+}
+
 // Specific functions for inserting teams, hosts, and services
 export async function insertTeam(team: Object) {
     return await insertDocument("teams", team);
@@ -103,6 +119,10 @@ export async function insertHost(host: Object) {
 
 export async function insertService(service: Object) {
     return await insertDocument("services", service);
+}
+
+export async function insertReport(report: Object) {
+    return await insertDocument("reports", report);
 }
 
 // Example usage - uncomment and adjust the query as needed
