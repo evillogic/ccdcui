@@ -42,8 +42,14 @@ const navGroups = [
         label: 'Analysis',
         items: [
             { label: 'Scoreboard', Icon: ScoreboardIcon, path: '/scoreboard' }, // Assuming a route for the scoreboard
-            { label: 'Report', Icon: ReportIcon, path: '/report' }, // Assuming a route for viewing reports
             { label: 'Notes', Icon: NoteIcon, path: '/notes' }, // Assuming a route for viewing notes
+        ],
+    },
+    {
+        label: 'Reporting',
+        items: [
+            { label: 'Reports', Icon: ReportIcon, path: '/reports' }, // Assuming a route for viewing reports
+            { label: 'Templates', Icon: ReportIcon, path: '/templates' }, // Assuming a route for viewing reports
         ],
     },
     {
