@@ -24,3 +24,5 @@ const newReportTable: React.FC<ReportTableProps> = ({ reports }) => {
         </div>
     )
 };
+
+export default newReportTable;
