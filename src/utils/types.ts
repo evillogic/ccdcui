@@ -38,6 +38,7 @@ export interface Service {
 
 export interface Report {
     _id: string;
+    submitted: boolean;
     title: string;
     user: string; // User which made the report, will be relevant when user identities are implemented
     evidence: string;
