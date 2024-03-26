@@ -167,6 +167,10 @@ export async function deleteReport(report: Object) {
     return await deleteDocument("reports", report);
 }
 
+export async function deleteTemplate(template: Object) {
+    return await deleteDocument("templates", template);
+}
+
 // Example usage - uncomment and adjust the query as needed
 // fetchTeams().then(console.log).catch(console.error);
 // fetchHosts({ team: new ObjectId("someTeamId") }).then(console.log).catch(console.error);
