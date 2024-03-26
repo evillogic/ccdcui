@@ -12,12 +12,12 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
         const query = { _id: id}
         const reports = await fetchReports(query);
         if reports === [] {
-          res.status(404).json({ reports })
+            res.status(404).json({ reports })
         } else {
-          const deletion = await deleteReports(reports);
-          res.status(200).json({ deletion })
+            const deletion = await deleteReports(reports);
+            res.status(200).json({ deletion })
         }
-    } {
+    } else {
         res.status(405).json({ message: 'Method Not Allowed'})
     }
 }
