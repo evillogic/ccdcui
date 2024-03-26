@@ -9,7 +9,7 @@ const uri = `mongodb://${process.env.MONGODB_USERNAME}:${process.env.MONGODB_PAS
 console.log(uri);
 
 
-// Generic function to fetch documents from any collection
+// Generic function to handle documents from any collection
 async function fetchDocuments(collectionName: string, query: Object = {}) {
     const client = new MongoClient(uri);
     try {
@@ -38,6 +38,23 @@ async function insertDocument(collectionName: string, document: Object) {
     } catch (error) {
         console.error(`An error occurred while inserting a document into ${collectionName}:`, error);
         return null; // Return null in case of error
+    } finally {
+        await client.close();
+    }
+}
+
+// Generic function to delete a document from any collection
+async function deleteDocument(collectionName: string, document: Object) {
+    const client = new MongoClient(uri);
+    try {
+        await client.connect();
+        const database = client.db(dbName);
+        const collection = database.collection(collectionName);
+        const result = await collection.deleteOne(collectionName);
+        return result;
+    } catch (error) {
+        console.error(`An error occured while deleting a document from ${collectionName}:`, error);
+        return null;
     } finally {
         await client.close();
     }
@@ -143,6 +160,11 @@ export async function insertReport(report: Object) {
 
 export async function insertTemplate(template: Object) {
     return await insertDocument("templates", template);
+}
+
+// Functions to delete types in the database
+export async function deleteReport(report: Object) {
+    return await deleteDocument("reports", report);
 }
 
 // Example usage - uncomment and adjust the query as needed
