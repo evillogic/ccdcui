@@ -42,8 +42,10 @@ export async function POST(req: Request) {
                 for (let k = 0; k < 3; k++) {
                     const newService = {
                         _id: `service${i + 1}${j + 1}${k + 1}`,
+                        ip: `10.0.${i + 1}.${j + 1}`,
                         hostname: `service${i + 1}${j + 1}${k + 1}.example.com`,
-                        port: 80,
+                        serviceIdentifier: `service${i + 1}${j + 1}${k + 1}.example.com:${80 + k}`,
+                        port: 80 + k,
                         protocol: 'tcp',
                         product: 'Apache',
                         version: '2.4.41',

@@ -23,7 +23,9 @@ export interface Host {
 
 export interface Service {
     _id: string;
+    ip: string;
     hostname: string; // Detailed hostname if different from Host IP
+    serviceIdentifier: string; // Unique combination of hostname and port
     port: number;
     protocol: string;
     product: string;

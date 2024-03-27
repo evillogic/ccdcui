@@ -40,7 +40,7 @@ const newServiceTable: React.FC<ServiceTableProps> = ({ services }) => {
     return (
         <div>
             <Typography variant="h4" style={{ margin: '2rem' }}>Services</Typography>
-            <IndicatorTable dataObjects={services} indicatorKey="status" linkKey="port" linkPath="/services" columnMapping={serviceColumnMapping}/>
+            <IndicatorTable dataObjects={services} indicatorKey="status" linkKey="serviceIdentifier" linkPath="/services" columnMapping={serviceColumnMapping}/>
         </div>
     );
 };
