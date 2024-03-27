@@ -20,7 +20,7 @@ GoogleForm.prototype.setAllFields = function(data) {
     this.data = data
 }
 
-GoogleForm.prototype.send = function () {
+GoogleForm.prototype.send = async function () {
     var formUrlParams = '';
     for (var name in this.data) {
         formUrlParams += '&' + name + '=' + encodeURIComponent(this.data[name] || '');
@@ -33,3 +33,5 @@ GoogleForm.prototype.send = function () {
         throw error;
     }
 }
+
+module.exports = GoogleForm
