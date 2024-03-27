@@ -4,7 +4,7 @@ import React, { useState } from 'react';
 import { Box, Button, TextField, Typography } from '@mui/material';
 
 const SetupTeamsPage: React.FC = () => {
-  const [teamCount, setTeamCount] = useState('');
+  const [teamCount, setTeamCount] = useState('10');
 
   const handleSetupTeams = async () => {
     try {
@@ -17,6 +17,18 @@ const SetupTeamsPage: React.FC = () => {
       alert('Failed to setup teams.');
     }
   };
+
+  const cleanup = async () => {
+    try {
+      const response = await fetch('/api/clean', {
+        method: 'POST'
+      });
+      alert(await response.text());
+    } catch (error) {
+      console.error('Error cleaning up:', error);
+      alert('Failed to clean up.');
+    }
+  }
 
   return (
     <Box sx={{ maxWidth: 500, margin: '0 auto', textAlign: 'center', pt: 4 }}>
@@ -32,8 +44,11 @@ const SetupTeamsPage: React.FC = () => {
         type="number"
         sx={{ mb: 2 }}
       />
-      <Button variant="contained" onClick={handleSetupTeams}>
+      <Button onClick={handleSetupTeams} variant="outlined">
         Create Teams
+      </Button>
+      <Button onClick={cleanup} variant="outlined" color="error">
+        Delete All Data
       </Button>
     </Box>
   );

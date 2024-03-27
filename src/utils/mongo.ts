@@ -105,6 +105,25 @@ export async function insertService(service: Object) {
     return await insertDocument("services", service);
 }
 
+export async function deleteAll() {
+    const client = new MongoClient(uri);
+    try {
+        await client.connect();
+        const database = client.db(dbName);
+        const collections = ['teams', 'hosts', 'services'];
+        for (const collectionName of collections) {
+            const collection = database.collection(collectionName);
+            await collection.deleteMany({});
+        }
+        return [];
+    } catch (error) {
+        console.error(`An error occured`);
+        return [];
+    } finally {
+        await client.close();
+    }
+}
+
 // Example usage - uncomment and adjust the query as needed
 // fetchTeams().then(console.log).catch(console.error);
 // fetchHosts({ team: new ObjectId("someTeamId") }).then(console.log).catch(console.error);
