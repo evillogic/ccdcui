@@ -31,7 +31,8 @@ export async function POST(req: Request) {
                     team: `team${i + 1}`,
                     lastSeen: new Date().toISOString(),
                     notes: `Host ${i + 1}${j + 1} created automatically.`,
-                    services: [],
+                    services: [`service${i + 1}${j + 1}1`, `service${i + 1}${j + 1}2`, `service${i + 1}${j + 1}3`],
+                    liveServiceCount: 0,
                     collectedPasswordsCount: 0,
                     collectedPIICount: 0,
                 };

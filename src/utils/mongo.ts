@@ -10,7 +10,7 @@ console.log(uri);
 
 
 // Generic function to fetch documents from any collection
-async function fetchDocuments(collectionName: string, query: Object = {}) {
+export async function fetchDocuments(collectionName: string, query: Object = {}) {
     const client = new MongoClient(uri);
     try {
         await client.connect();
