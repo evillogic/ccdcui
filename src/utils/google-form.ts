@@ -17,15 +17,21 @@ GoogleForm.prototype.addField = function (name, data) {
 }
 
 GoogleForm.prototype.setAllFields = function(data) {
-    this.data = data
+    this.data = data;
 }
 
 GoogleForm.prototype.send = async function () {
     var formUrlParams = '';
     for (var name in this.data) {
-        formUrlParams += '&' + name + '=' + encodeURIComponent(this.data[name] || '');
+        if (Array.isArray(this.data[name])) {
+            for (var field in this.data[name]) {
+                formUrlParams += '&' + name + '=' + encodeURIComponent(this.data[name][field] || '');
+            }
+        } else {
+            formUrlParams += '&' + name + '=' + encodeURIComponent(this.data[name] || '');
+        }
     }
-    var formSubmissionUrl = this.link + formUrlParams + '&submit=Submit'
+    var formSubmissionUrl = this.link + formUrlParams + '&submit=Submit';
     try {
         const response = await fetch(formSubmissionUrl);
     } catch (error) {
@@ -34,4 +40,4 @@ GoogleForm.prototype.send = async function () {
     }
 }
 
-module.exports = GoogleForm
+module.exports = GoogleForm;

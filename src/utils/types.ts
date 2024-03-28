@@ -40,7 +40,6 @@ export interface Report {
     _id: string;
     submitted: boolean;
     title: string;
-    compromisedTeams: string[]; // Array of Team IDs
     reportData: ReportData;
 }
 
@@ -50,6 +49,7 @@ export interface ReportData {
     attackingIp: string;
     compromisedIp: string;
     universallyAttempted: boolean;
+    compromisedTeams: string[]; // Array of team names as they appear on the form
     attackVector: string;
     accessLevel: string;
     persistenceEstablished: boolean;
