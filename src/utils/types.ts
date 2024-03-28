@@ -40,24 +40,24 @@ export interface Report {
     _id: string;
     submitted: boolean;
     title: string;
-    user: string; // User which made the report, will be relevant when user identities are implemented
+    compromisedTeams: string[]; // Array of Team IDs
+    reportData: ReportData;
+}
+
+export interface ReportData {
+    author: string; // User which made the report, will be relevant when user identities are implemented
     evidence: string;
     attackingIp: string;
     compromisedIp: string;
     universallyAttempted: boolean;
-    compromisedTeams: string[]; // Array of Team IDs
-    dataAccessed: ReportDataAccessed;
-    persistence: boolean;
     attackVector: string;
     accessLevel: string;
-}
-
-export interface ReportDataAccessed {
-    _id: string;
-    pii: boolean;
-    password: boolean;
-    systemConfig: boolean;
-    database: boolean;
+    persistenceEstablished: boolean;
+    piiDataAccessed: boolean;
+    passwordDataAccessed: boolean;
+    systemConfigDataAccessed: boolean;
+    databaseDataAccessed: boolean;
+    evidenceText: string;
 }
 
 export interface Template {

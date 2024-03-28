@@ -10,12 +10,11 @@ interface ReportTableProps {
 const newReportTable: React.FC<ReportTableProps> = ({ reports }) => {
     const reportColumnMapping = {
         title: "Title",
-        user: "User",
+        reportData.author: "Author",
         compromisedTeams: "Compromised Teams",
-        compromisedIp: "Compromised IP",
-        persistence: "Persistence",
-        accessLevel: "Access Level",
-        dataAccessed: "Data Accessed",
+        reportData.compromisedIp: "Compromised IP",
+        reportData.persistenceEstablished: "Persistence",
+        reportData.accessLevel: "Access Level",
     };
     return (
         <div>
